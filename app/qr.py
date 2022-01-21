@@ -1,4 +1,3 @@
-
 import qrcode
 import requests
 import qrcode.image.styles.moduledrawers as md
@@ -73,14 +72,4 @@ def qr_opt_logo(qr_text,logo_location=''):
     QRimg.save('Results/Logo.png')    
     return None
 
-def main():
-    """main function used to run the program
-    """
-    str_input = input('Enter text to generate QR code:')
-    qr_opt_logo(str_input,logo_location=config.default_logo)
 
-
-if __name__ == '__main__':
-    """[summary]
-    """    
-    main()
