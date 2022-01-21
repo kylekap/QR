@@ -5,7 +5,7 @@ import qrcode.image.styledpil as spil
 
 from  PIL import Image
 
-import config
+import Project.config
 
 def simple_qr(qr_text):
     """[summary]
@@ -17,7 +17,7 @@ def simple_qr(qr_text):
     type(img)
     img.save('Results/img.png')
 
-def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=None,box_size=25,border=2,fill_color='black',back_color='white', image_factory=spil.StyledPilImage,module_drawer=md.CircleModuleDrawer(),fit=True):
+def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=None,box_size=5,border=2,fill_color='black',back_color='white', image_factory=spil.StyledPilImage,module_drawer=md.CircleModuleDrawer(),fit=True):
     """[summary]
 
     Args:
@@ -47,7 +47,7 @@ def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=Non
     #img.save('Results/img.png')
     return img
 
-def qr_opt_logo(qr_text,logo_location=''):
+def qr_opt_logo(qr_text,logo_location='',version=None):
     """[summary]
 
     Args:
@@ -69,7 +69,7 @@ def qr_opt_logo(qr_text,logo_location=''):
         pos = ((QRimg.size[0] - logo.size[0]) // 2, (QRimg.size[1] - logo.size[1]) // 2)
         QRimg.paste(logo, pos)
     
-    QRimg.save('Results/Logo.png')    
+    QRimg.save('static/Logo.png')
     return None
 
 
