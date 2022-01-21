@@ -1,5 +1,5 @@
-# Template
+# QR Codes
 
-Template python files
+Python QRCode generator
 
 <!--pip freeze > requirements.txt -->
