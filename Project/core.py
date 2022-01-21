@@ -6,7 +6,7 @@ import qrcode.image.styledpil as spil
 
 from  PIL import Image
 
-import Project.config as config
+import config
 
 def simple_qr(qr_text):
     """[summary]
@@ -77,7 +77,7 @@ def main():
     """main function used to run the program
     """
     str_input = input('Enter text to generate QR code:')
-    qr_opt_logo(str_input,logo_url=config.default_logo)
+    qr_opt_logo(str_input,logo_location=config.default_logo)
 
 
 if __name__ == '__main__':
