@@ -10,12 +10,12 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='Example',
-    version='0.0.2',
-    description='Basic package outline for projects',
+    name='QRCodes',
+    version='0.0.1',
+    description='Basic package for generating QR codes',
     long_description=readme,
     author='Kyle Patterson',
-    url='https://github.com/kylekap/TemplatePython',
+    url='https://github.com/kylekap/QRCodes',
     license=license,
     packages=find_packages(exclude=('Tests', 'Docs', 'Results'))
 )

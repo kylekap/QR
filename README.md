@@ -1,2 +1,4 @@
-# TemplatePython
- Template Python project using typical structures
+# QRCode
+Generates QR Codes for a given input
+
+<!--pip freeze > requirements.txt -->
