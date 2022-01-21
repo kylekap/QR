@@ -1,4 +1,5 @@
-# QRCode
-Generates QR Codes for a given input
+# Template
+
+Template python files
 
 <!--pip freeze > requirements.txt -->
