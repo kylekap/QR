@@ -5,35 +5,34 @@ import qrcode.image.styledpil as spil
 
 from  PIL import Image
 
-import Project.config
 
 def simple_qr(qr_text):
-    """[summary]
+    """Most basic QR generator, with no logo or resizing.
 
     Args:
-        qr_text ([type]): [description]
+        qr_text (str): Text to make into QR code
     """    
-    img = qrcode.make(qr_text)
-    type(img)
+    img = qrcode.make(str(qr_text))
+    #type(img)
     img.save('Results/img.png')
 
-def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=None,box_size=5,border=2,fill_color='black',back_color='white', image_factory=spil.StyledPilImage,module_drawer=md.CircleModuleDrawer(),fit=True):
-    """[summary]
+def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=None,box_size=5,border=4,fill_color='black',back_color='white', image_factory=spil.StyledPilImage,module_drawer=md.CircleModuleDrawer(),fit=True):
+    """QR Code generator function. Default settings in place to make consistent barcode
 
     Args:
-        qr_text ([type]): [description]
-        error_correction ([type], optional): [description]. Defaults to qrcode.constants.ERROR_CORRECT_H.
-        version ([type], optional): [description]. Defaults to None.
-        box_size (int, optional): [description]. Defaults to 25.
-        border (int, optional): [description]. Defaults to 2.
-        fill_color (str, optional): [description]. Defaults to 'black'.
-        back_color (str, optional): [description]. Defaults to 'white'.
-        image_factory ([type], optional): [description]. Defaults to spil.StyledPilImage.
-        module_drawer ([type], optional): [description]. Defaults to md.CircleModuleDrawer().
-        fit (bool, optional): [description]. Defaults to True.
+        qr_text (str): Text to make into QR code
+        error_correction (qrcode.constants, optional): Type of error correction to include with barcode. Defaults to qrcode.constants.ERROR_CORRECT_H, which is 30%.
+        version (int, optional): Integer from 1 to 40 that controls the size of the QR Code (the smallest, version 1, is a 21x21 matrix). Defaults to None.
+        box_size (int, optional): How many pixels each “box” of the QR code is. Defaults to 25.
+        border (int, optional): How many boxes thick the border should be (the default is 4, which is the minimum according to the specs). Defaults to 4.
+        fill_color (str, optional): Color of the dots in the code. Defaults to 'black'.
+        back_color (str, optional): Color of the backsplash in the code. Defaults to 'white'.
+        image_factory (optional): Image factory to utilize. Defaults to spil.StyledPilImage. Recommended do not change
+        module_drawer (optional): shape of the dots in the code. Defaults to md.CircleModuleDrawer(). Recommended do not change
+        fit (bool, optional): Fits to the size or not. Defaults to True.
 
     Returns:
-        [type]: [description]
+        qr.make_image: [description]
     """    
     qr = qrcode.QRCode(
         version=version,
@@ -48,14 +47,11 @@ def adv_qr(qr_text,error_correction=qrcode.constants.ERROR_CORRECT_H,version=Non
     return img
 
 def qr_opt_logo(qr_text,logo_location='',version=None):
-    """[summary]
+    """Generates QR code with logo.
 
     Args:
-        qr_text ([type]): [description]
-        logo_location (str, optional): [description]. Defaults to ''.
-
-    Returns:
-        [type]: [description]
+        qr_text (str): Text to generate QR code
+        logo_location (str, optional): location of the logo to add to the QR code Able to use file location or http:// as long as program has access to location. Defaults to ''.
     """    
     QRimg = adv_qr(qr_text)
     if logo_location != '':
@@ -70,6 +66,10 @@ def qr_opt_logo(qr_text,logo_location='',version=None):
         QRimg.paste(logo, pos)
     
     QRimg.save('static/Logo.png')
-    return None
 
 
+if __name__ == '__main__':
+    import config
+    qr_opt_logo('https://kylekap.pythonanywhere.com/')
+else:
+    import Project.config

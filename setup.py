@@ -11,7 +11,7 @@ with open('LICENSE') as f:
 
 setup(
     name='Basic',
-    version='0.0.1',
+    version='0.1.0',
     description='Basic package for generating QR codes',
     long_description=readme,
     author='Kyle Patterson',
