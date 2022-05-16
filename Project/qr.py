@@ -9,8 +9,9 @@ from PIL import Image
 class QR:
     def __init__(self):
         try:
-            self.brand_img = Image.open("static/Kylekap.jpg")
+            self.brand_img = Image.open("static/Logo.jpg")
         except Exception as E:
+            self.brand_img = ""
             print(type(E).__name__,__file__, E.__traceback__.tb_lineno)
 
     def create_QR(self,
@@ -56,16 +57,16 @@ class QR:
 
             wsize = int(0.25 * self.img.size[0])
             hsize = int(0.25 * self.img.size[1])
+            if (type(self.brand_img) != type("")):
+                self.brand_img = self.brand_img.resize((wsize,hsize), Image.ANTIALIAS)
 
-            self.brand_img = self.brand_img.resize((wsize,hsize), Image.ANTIALIAS)
+                pos = (
+                    (self.img.size[0] - self.brand_img.size[0]) // 2,
+                    (self.img.size[1] - self.brand_img.size[1]) // 2,
+                )
+                self.img.paste(self.brand_img, pos)
 
-            self.pos = (
-                (self.img.size[0] - self.brand_img.size[0]) // 2,
-                (self.img.size[1] - self.brand_img.size[1]) // 2,
-            )
-            self.img.paste(self.brand_img, self.pos)
-
-            self.img.save("static/Logo.png")
+            self.img.save("static/Display.png")
 
         except Exception as E:
             print(type(E).__name__,__file__, E.__traceback__.tb_lineno)
