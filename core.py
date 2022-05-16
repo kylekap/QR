@@ -5,7 +5,7 @@ Returns:
 """
 
 from flask import Flask, render_template, request
-from Project import qr  # pylint: disable=import-error
+from Project import qr 
 
 app = Flask(__name__)
 
