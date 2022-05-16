@@ -17,8 +17,8 @@ def hello():
     Returns:
         _type_: _description_
     """
-    data = request.args.get("data")
-    qr.qr_opt_logo(data)
+    code = qr.QR()
+    code.create_QR(txt=request.args.get("data"))
     return render_template("index.html")
 
 
