@@ -1,4 +1,4 @@
-import requests
+# import requests
 import qrcode
 import qrcode.image.styles.moduledrawers as md
 import qrcode.image.styledpil as spil
@@ -12,9 +12,10 @@ class QR:
             self.brand_img = Image.open("static/Logo.jpg")
         except Exception as E:
             self.brand_img = ""
-            print(type(E).__name__,__file__, E.__traceback__.tb_lineno)
+            print(type(E).__name__, __file__, E.__traceback__.tb_lineno)
 
-    def create_QR(self,
+    def create_QR(
+        self,
         txt="",
         error_correction=qrcode.constants.ERROR_CORRECT_H,
         version=None,
@@ -24,20 +25,22 @@ class QR:
         back_color="white",
         image_factory=spil.StyledPilImage,
         fit=True,
-        ):
+    ):
         """Generate QR Code.
 
         Args:
-            error_correction (_type_, optional): Level of error correction. Defaults to qrcode.constants.ERROR_CORRECT_H (30%).
+            error_correction (_type_, optional): Level of error correction.
+                Defaults to qrcode.constants.ERROR_CORRECT_H (30%).
             version (_type_, optional): _description_. Defaults to None.
             box_size (int, optional): Box size on QR codes. Defaults to 5.
             border (int, optional): Border size on QR code. Defaults to 4.
             fill_color (str, optional): Fill-in color for QR codes. Defaults to "black".
             back_color (str, optional): Background color for QR codes. Defaults to "white".
-            image_factory (_type_, optional): Type of image factory. Leave alone unless experienced. Defaults to spil.StyledPilImage.
+            image_factory (_type_, optional): Type of image factory. Leave alone unless experienced.
+                Defaults to spil.StyledPilImage
             fit (bool, optional): Make fit to specific size. Defaults to True.
         """
-        
+
         try:
             self.QR_TEXT = txt
             qr_generated = qrcode.QRCode(
@@ -52,13 +55,14 @@ class QR:
                 fill_color=fill_color,
                 back_color=back_color,
                 module_drawer=md.CircleModuleDrawer(),
-                image_factory=image_factory)
+                image_factory=image_factory,
+            )
             self.img = img
 
             wsize = int(0.25 * self.img.size[0])
             hsize = int(0.25 * self.img.size[1])
-            if (type(self.brand_img) != type("")):
-                self.brand_img = self.brand_img.resize((wsize,hsize), Image.ANTIALIAS)
+            if not isinstance(self.brand_img, (str)):
+                self.brand_img = self.brand_img.resize((wsize, hsize), Image.ANTIALIAS)
 
                 pos = (
                     (self.img.size[0] - self.brand_img.size[0]) // 2,
@@ -69,4 +73,4 @@ class QR:
             self.img.save("static/Display.png")
 
         except Exception as E:
-            print(type(E).__name__,__file__, E.__traceback__.tb_lineno)
+            print(type(E).__name__, __file__, E.__traceback__.tb_lineno)

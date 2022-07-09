@@ -1,0 +1,6 @@
+[flake8]
+max-line-length = 120
+filename = *.py src/
+ignore =
+    E731  # do not assign a lambda expression, use a def
+    E501  # line too long (122 > 120 characters)

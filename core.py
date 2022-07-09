@@ -12,10 +12,10 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET", "POST"])
 def hello():
-    """_summary_
+    """Post/Get response
 
     Returns:
-        _type_: _description_
+        image: QR code image
     """
     code = qr.QR()
     code.create_QR(txt=request.args.get("data"))
